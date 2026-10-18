@@ -1,0 +1,18 @@
+[project]
+name = "job-hunter-agent"
+version = "0.1.0"
+description = "LangGraph agent that finds work leads and drafts outreach"
+requires-python = ">=3.13"
+dependencies = [
+    "langchain-anthropic>=1.7.6",
+    "langgraph>=1.2.16",
+    "langsmith>=0.14.11",
+    "python-dotenv>=1.2.4",
+]
+
+[project.scripts]
+job-hunter-agent = "job_hunter_agent:main"
+
+[build-system]
+requires = ["uv_build>=0.12.21,<0.13.0"]
+build-backend = "uv_build"
