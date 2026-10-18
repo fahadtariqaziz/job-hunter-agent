@@ -13,9 +13,11 @@ def main() -> None:
         status = "OK" if os.getenv(key) else "MISSING"
         print(f"{key}: {status}")
 
-    llm = ChatAnthropic(model="claude-haiku-5-5", max_tokens=50)
+    # Haiku 5.5 thinks before answering by default, and thinking tokens count
+    # toward max_tokens. Low effort + room for the answer keeps it cheap.
+    llm = ChatAnthropic(model="claude-haiku-5-5", max_tokens=1024, effort="low")
     reply = llm.invoke("Say 'setup works' in 3 words.")
-    print("Claude says:", reply.content)
+    print("Claude says:", reply.text)
     print("Tokens used:", reply.usage_metadata)
 
 
